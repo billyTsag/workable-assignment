@@ -1,0 +1,14 @@
+.vscode
+node_modules
+reports
+dist
+.eslintignore
+.eslint.js
+.gitignore
+.prettierrc.js
+README.md
+Dockerfile
+.eslintcache
+docker-compose.yml
+docker-compose.selenium-hub.yml
+LICENSE

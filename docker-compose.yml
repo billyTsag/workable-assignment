@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+    ui-tests:
+        build: ./
+        container_name: ui-tests
+        hostname: ui-tests
+        volumes:
+            - ./reports:/app/reports
+volumes:
+    reports:
+networks:
+    selenium-hub:
