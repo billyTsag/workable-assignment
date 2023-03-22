@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "target": "ES6",
+        "module": "commonjs",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "allowJs": true,
+        "outDir": "dist",
+        "types": ["node"]
+    },
+    "exclude": ["**/.vscode", "**/dist", "**/node_modules", "**/reports"]
+}
