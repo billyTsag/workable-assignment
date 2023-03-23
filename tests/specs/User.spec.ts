@@ -1,15 +1,19 @@
 import { homePage } from "../../testingTools/pages/Index";
 import { userActions } from "../../testingTools/actions/Index";
 import { testData } from "../data/TestData";
-
 import { driverWrapper } from "../../helpers/DriverWrapper";
 
 before("Starting Selenium", async (): Promise<void> => {
     await driverWrapper.init();
 });
 
-after("Tearing Down Selenium", async (): Promise<void> => {
+after("Tearing Down Selenium and saving testData ", async (): Promise<void> => {
     await driverWrapper.tearDown();
+    const testDataFile = path.join(process.cwd(), "/reports/testData.json");
+    if (fs.existsSync(testDataFile)) {
+        fs.rmdirSync(testDataFile);
+    }
+    fs.writeFileSync(testDataFile, JSON.stringify(testData.data));
 });
 
 describe("Testing Suite: PMTool ", async (): Promise<void> => {

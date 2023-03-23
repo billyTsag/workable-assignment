@@ -3,18 +3,24 @@ import { projectActions, taskActions, userActions } from "../../testingTools/act
 import { dashboardPage, homePage, tasksPage, projectsComponent } from "../../testingTools/pages/Index";
 import { testData } from "../data/TestData";
 import { driverWrapper } from "../../helpers/DriverWrapper";
+import fs from "fs";
 
-before("Starting Selenium", async (): Promise<void> => {
+before("Starting Selenium ", async (): Promise<void> => {
     await driverWrapper.init();
 });
 
-after("Tearing Down Selenium", async (): Promise<void> => {
+after("Tearing Down Selenium and saving testData ", async (): Promise<void> => {
     await driverWrapper.tearDown();
+    const testDataFile = path.join(process.cwd(), "/reports/testData.json");
+    if (fs.existsSync(testDataFile)) {
+        fs.rmdirSync(testDataFile);
+    }
+    fs.writeFileSync(testDataFile, JSON.stringify(testData.data));
 });
 
 describe("Testing Suite: E2E ", async (): Promise<void> => {
+    let userEmail1 = "";
     describe("User ", async (): Promise<void> => {
-        let userEmail1 = "";
         it("Creation ", async (): Promise<void> => {
             const randomUser = userActions.getRandomUser();
             userEmail1 = randomUser.randomEmail;
@@ -29,11 +35,11 @@ describe("Testing Suite: E2E ", async (): Promise<void> => {
 
             await userActions.createUser(randomUser.randomEmail, testData.data[userEmail1]);
         });
-        it("Login User 1", async (): Promise<void> => {
+        it("Login ", async (): Promise<void> => {
             await homePage.open();
             await userActions.login(userEmail1, testData.data[userEmail1].password);
         });
-        it("Change Settings User 1 ", async (): Promise<void> => {
+        it("Change Settings ", async (): Promise<void> => {
             testData.data[userEmail1].address = "My New Address";
             testData.data[userEmail1].company = "My New Company";
 
@@ -46,7 +52,9 @@ describe("Testing Suite: E2E ", async (): Promise<void> => {
                 email: "",
             });
         });
-        it("Create Project 1", async (): Promise<void> => {
+    });
+    describe("Projects & Tasks", async (): Promise<void> => {
+        it("Project 1 Create ", async (): Promise<void> => {
             testData.data[userEmail1].projects.push({
                 id: 0,
                 name: "Project 1",
@@ -59,7 +67,7 @@ describe("Testing Suite: E2E ", async (): Promise<void> => {
                 testData.data[userEmail1].projects[0].description,
             );
         });
-        it("Edit Created Project 1", async (): Promise<void> => {
+        it("Project 1 Edit ", async (): Promise<void> => {
             testData.data[userEmail1].projects[0].name = "Project 1.1";
             testData.data[userEmail1].projects[0].description = "Project 1.1 updated description!";
 
@@ -69,7 +77,7 @@ describe("Testing Suite: E2E ", async (): Promise<void> => {
                 testData.data[userEmail1].projects[0].description,
             );
         });
-        it("Create Project 2", async (): Promise<void> => {
+        it("Project 2 Create ", async (): Promise<void> => {
             testData.data[userEmail1].projects.push({
                 name: "Project 2",
                 description: "Project 2 description!",
@@ -82,7 +90,7 @@ describe("Testing Suite: E2E ", async (): Promise<void> => {
             );
         });
         // // TODO: add view? project (assert it exists)
-        it("Create Task 1 of Project 1 ", async (): Promise<void> => {
+        it("Task 1 of Project 1 Create ", async (): Promise<void> => {
             testData.data[userEmail1].projects[0].tasks.push({
                 id: 0,
                 summary: "Task Summary",
@@ -106,7 +114,7 @@ describe("Testing Suite: E2E ", async (): Promise<void> => {
 
             testData.data[userEmail1].projects[0].tasks[0].id = (await tasksPage.getTaskId("IN PROGRESS"))[0];
         });
-        it("Create Task 2 of Project 1 ", async (): Promise<void> => {
+        it("Task 2 of Project 1 Create ", async (): Promise<void> => {
             await dashboardPage.open();
             testData.data[userEmail1].projects[0].tasks.push({
                 id: 0,
@@ -129,7 +137,7 @@ describe("Testing Suite: E2E ", async (): Promise<void> => {
 
             testData.data[userEmail1].projects[0].tasks[0].id = (await tasksPage.getTaskId("TO DO"))[0];
         });
-        it("Edit Task 1 of Project 1", async (): Promise<void> => {
+        it("Task 1 of Project 1 Edit ", async (): Promise<void> => {
             testData.data[userEmail1].projects[0].tasks[0] = {
                 id: testData.data[userEmail1].projects[0].tasks[0].id,
                 summary: "New Summary",
@@ -150,7 +158,7 @@ describe("Testing Suite: E2E ", async (): Promise<void> => {
                 testData.data[userEmail1].projects[0].tasks[0].filePaths,
             );
         });
-        it("Create Project 3", async (): Promise<void> => {
+        it("Project 3 Create ", async (): Promise<void> => {
             await dashboardPage.driverWrapper.driver.sleep(1000);
             await dashboardPage.open();
             await dashboardPage.driverWrapper.driver.sleep(1000);
@@ -166,7 +174,7 @@ describe("Testing Suite: E2E ", async (): Promise<void> => {
                 testData.data[userEmail1].projects[2].description,
             );
         });
-        it("Create Task 1 of Project 3 ", async (): Promise<void> => {
+        it("Task 1 of Project 3 Create ", async (): Promise<void> => {
             testData.data[userEmail1].projects[2].tasks.push({
                 id: 0,
                 summary: "New 3.0 Task Summary",
@@ -190,21 +198,25 @@ describe("Testing Suite: E2E ", async (): Promise<void> => {
 
             testData.data[userEmail1].projects[2].tasks[0].id = (await tasksPage.getTaskId("IN PROGRESS"))[0];
         });
-        it("TasksDB sort tasks", async (): Promise<void> => {
+    });
+    describe("TaskDB ", async (): Promise<void> => {
+        it("Sort Tasks ", async (): Promise<void> => {
             await homePage.open();
             await homePage.goToTaskDB();
             await taskActions.sortTasks();
         });
-        it("TasksDB search task", async (): Promise<void> => {
+        it("Search Task", async (): Promise<void> => {
             await taskActions.searchTaskDB("3.0");
         });
-        it("Delete Task 1 of Project 1", async (): Promise<void> => {
+    });
+    describe("Deleting Tasks & Projects ", async (): Promise<void> => {
+        it("Task 1 of Project 1 Delete ", async (): Promise<void> => {
             await dashboardPage.open();
             await projectsComponent.clickViewTasksButton(1);
             await taskActions.deleteTask(testData.data[userEmail1].projects[0].tasks[0].id);
             testData.data[userEmail1].projects[0].tasks[0].deleted = true;
         });
-        it("Delete Created Project ", async (): Promise<void> => {
+        it("Project 2 Delete ", async (): Promise<void> => {
             await dashboardPage.open();
             await projectActions.deleteProject(2);
             testData.data[userEmail1].projects[2].deleted = true;
