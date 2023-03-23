@@ -5,7 +5,7 @@ class DashboardPage extends Page {
 
     constructor() {
         super();
-        this.createNewButton = `//a[@class='waves-effect waves-light btn']`;
+        this.createNewButton = `//a[@href='/createProject']`;
     }
 
     async createNewProject(): Promise<void> {

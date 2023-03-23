@@ -8,3 +8,6 @@ export * from "./ProjectsComponent";
 export * from "./SettingsPage";
 export * from "./TasksPage";
 export * from "./TasksDBPage";
+export * from "./EditTaskPage";
+export * from "./EditProjectPage";
+

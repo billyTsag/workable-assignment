@@ -1,7 +1,7 @@
 import Page from "./helpers/Page";
 
-class CreateTaskPage extends Page {
-    nameInput: string;
+class EditTaskPage extends Page {
+    summaryInput: string;
     descriptionInput: string;
     statusDropdown: string;
     statusSelection: string;
@@ -12,7 +12,7 @@ class CreateTaskPage extends Page {
 
     constructor() {
         super();
-        this.nameInput = `//input[@id='summary']`;
+        this.summaryInput = `//input[@id='summary']`;
         this.descriptionInput = `//textarea[@id='description']`;
         this.statusDropdown = `//input[@class='select-dropdown dropdown-trigger']`;
         this.statusSelection = `//span[normalize-space()='TO DO']`;
@@ -22,8 +22,8 @@ class CreateTaskPage extends Page {
         this.submitButton = `//button[@name='action']`;
     }
 
-    async setName(name: string): Promise<void> {
-        await this.driverWrapper.setValue(this.nameInput, name);
+    async setSummary(name: string): Promise<void> {
+        await this.driverWrapper.setValue(this.summaryInput, name);
     }
 
     async setDescription(description: string): Promise<void> {
@@ -63,5 +63,5 @@ class CreateTaskPage extends Page {
     }
 }
 
-const createTaskPage = new CreateTaskPage();
-export { createTaskPage };
+const editTaskPage = new EditTaskPage();
+export { editTaskPage };

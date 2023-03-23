@@ -19,14 +19,24 @@ class SettingsPage extends Page {
     }
 
     async setEmail(email: string): Promise<void> {
+        // Had to add sleeps below because there were numerous bugs without them
+        await this.driverWrapper.driver.sleep(1000);
+        await (await this.driverWrapper.getElement(this.emailInput)).clear();
+        await this.driverWrapper.driver.sleep(1000);
         await this.driverWrapper.setValue(this.emailInput, email);
     }
 
     async setCompany(company: string): Promise<void> {
+        await this.driverWrapper.driver.sleep(1000);
+        await (await this.driverWrapper.getElement(this.companyInput)).clear();
+        await this.driverWrapper.driver.sleep(1000);
         await this.driverWrapper.setValue(this.companyInput, company);
     }
 
     async setName(name: string): Promise<void> {
+        await this.driverWrapper.driver.sleep(1000);
+        await (await this.driverWrapper.getElement(this.nameInput)).clear();
+        await this.driverWrapper.driver.sleep(1000);
         await this.driverWrapper.setValue(this.nameInput, name);
     }
 
@@ -35,6 +45,9 @@ class SettingsPage extends Page {
     }
 
     async setAddress(address: string): Promise<void> {
+        await this.driverWrapper.driver.sleep(1000);
+        await (await this.driverWrapper.getElement(this.addressInput)).clear();
+        await this.driverWrapper.driver.sleep(1000);
         await this.driverWrapper.setValue(this.addressInput, address);
     }
 

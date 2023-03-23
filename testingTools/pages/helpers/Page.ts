@@ -1,4 +1,4 @@
-import { driverWrapper } from "../../helpers/DriverWrapper";
+import { driverWrapper } from "../../../helpers/DriverWrapper";
 
 export default class Page {
     driverWrapper: typeof driverWrapper;
