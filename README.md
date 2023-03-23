@@ -34,7 +34,7 @@
 
 This is a testing framework for testing the UI of `https://node-fs-app.herokuapp.com/`.
 
-The project uses selenium webdriver with TypeScript and Mocha.
+The project uses selenium webdriver with TypeScript and Mocha and Selenium Webdriver.
 
 The tests can be triggered directly through the project or through an API call that the service also provides.
 
