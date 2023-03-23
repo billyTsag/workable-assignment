@@ -24,6 +24,9 @@
 - [Tests](#tests)
     - [Run the Tests without Docker](#run-the-tests-without-docker)
     - [Run the Tests using Docker](#run-the-tests-using-docker)
+- [API](#api)
+    - [Run the API without Docker](#run-the-api-without-docker)
+    - [Run the API using Docker](#run-the-api-using-docker)
      
 
 
@@ -32,6 +35,8 @@
 This is a testing framework for testing the UI of `https://node-fs-app.herokuapp.com/`.
 
 The project uses selenium webdriver with TypeScript and Mocha.
+
+The tests can be triggered directly through the project or through an API call that the service also provides.
 
 ## Requirements
 You either need:
@@ -97,9 +102,64 @@ The dockerfile is located in:
     ```
 4. Start the UI tests:
     ```sh
-    docker-compose up --build
+    docker-compose up --build ui-tests
     ```
 5. After the tests finish you should see the results in the logs. 
+In addition to that a report in HTML format will be generated in `./reports/mocha-report.html` and the test data that were used will appaer in `./reports/testData.json`.
+
+# API
+
+The tests can be triggered directly through an API call that the service also provides.
+
+## Run the API without Docker
+
+1. Install npm packages
+    ```
+    npm install
+    ```
+2. The Api listens by default on port `3018`. 
+*If you want to change the default port go to: 
+    ```sh
+    ./api/config/config.json
+    ```
+3. Start the Api:
+    ```sh
+    npm run startApi
+    ```
+
+4. The Endpoint that starts the tests is HTTP GET and listens on:
+    ```sh
+    http://localhost:3018/api/tests/runTests
+    ```
+
+5. After the tests finish you should see the results in the logs. 
+In addition to that a report in HTML format will be generated in `./reports/mocha-report.html` and the test data that were used will appaer in `./reports/testData.json`.
+
+## Run the API using Docker
+
+1. The Api listens by default on port `3018`. 
+*If you want to change the default port go to: 
+    ```sh
+    ./apiTesting/docker-compose-api.yml
+    ```
+    *And change the ports: 
+     ```sh
+    ports:
+            - "3018:3018"
+    ```
+    *You will also have to change the port at:
+    ```sh
+    ./apiTesting/api/config/config.json
+    ```
+2. Start the Api:
+    ```sh
+    docker-compose up --build testing-api
+    ```
+3. The Endpoint that starts the tests is HTTP GET and listens on: 
+    ```sh
+    http://localhost:3018/api/mochaTests/runTests
+    ```
+4. After the tests finish you should see the results in the logs. 
 In addition to that a report in HTML format will be generated in `./reports/mocha-report.html` and the test data that were used will appaer in `./reports/testData.json`.
 
 <div align="center">
