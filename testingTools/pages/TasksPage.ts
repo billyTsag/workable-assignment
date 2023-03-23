@@ -1,5 +1,5 @@
 import Page from "./helpers/Page";
-import { By, WebElement, until } from "selenium-webdriver";
+import { By, until } from "selenium-webdriver";
 
 class TasksPage extends Page {
     editButton: string;
