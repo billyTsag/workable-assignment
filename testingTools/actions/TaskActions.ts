@@ -1,4 +1,4 @@
-import { createTaskPage, projectsComponent, editTaskPage, tasksPage, homePage, tasksDBPage } from "../pages/Index";
+import { createTaskPage, projectsComponent, editTaskPage, tasksPage, tasksDBPage } from "../pages/Index";
 
 class TaskActions {
     async createTask(

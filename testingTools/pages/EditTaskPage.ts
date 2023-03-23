@@ -50,7 +50,7 @@ class EditTaskPage extends Page {
         await this.driverWrapper.clickElement(labelIdentifier);
     }
 
-    async uploadFile(filePath: string){
+    async uploadFile(filePath: string) {
         await this.driverWrapper.uploadFile(this.uploadFileButton, filePath);
     }
 
