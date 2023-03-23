@@ -40,7 +40,9 @@ export class TestRunner {
     }
 
     private addTestFiles(): void {
-        this.runner.addFile(path.join(process.cwd(), "./dist/tests/specs/E2E.js"));
+        // TODO: fix issue where by adding multiple files you start all the before hookds of all tests
+        this.runner.addFile(path.join(process.cwd(), "./dist/tests/specs/E2E.spec.js"));
+        // this.runner.addFile(path.join(process.cwd(), "./dist/tests/specs/User.spec.js"));
     }
 
     public runTests(): Promise<ITestRun> {
