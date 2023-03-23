@@ -1,9 +1,9 @@
 import path from "path";
+import fs from "fs";
 import { projectActions, taskActions, userActions } from "../../testingTools/actions/Index";
 import { dashboardPage, homePage, tasksPage, projectsComponent } from "../../testingTools/pages/Index";
 import { testData } from "../data/TestData";
 import { driverWrapper } from "../../helpers/DriverWrapper";
-import fs from "fs";
 
 before("Starting Selenium ", async (): Promise<void> => {
     await driverWrapper.init();
