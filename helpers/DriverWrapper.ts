@@ -1,8 +1,4 @@
 import { Builder, Browser, By, WebDriver, WebElementPromise, WebElement, until } from "selenium-webdriver";
-// import { setDefaultTimeout } from "@cucumber/cucumber";
-
-// // For some reason FIREFOX & EDGE crash if I dont increase the defaultTimeout
-// setDefaultTimeout(60 * 1000);
 
 class DriverWrapper {
     driver: WebDriver;
@@ -56,6 +52,15 @@ class DriverWrapper {
         return await element.click();
     };
 
+    // implement below https://www.selenium.dev/documentation/webdriver/actions_api/mouse/
+
+    // dragAndDrop = async (): Promise<void> => {
+    //     const draggable = this.driver.findElement(By.id("draggable"));
+    //     const droppable = await this.driver.findElement(By.id("droppable"));
+    //     const actions = this.driver.actions({async: true});
+    //     await actions.dragAndDrop(draggable, droppable).perform();
+    // }
+
     setValue = async (identifier: string, value: string): Promise<void> => {
         return await (await this.getElement(identifier)).sendKeys(value);
     };
@@ -72,18 +77,6 @@ class DriverWrapper {
 
     tearDown = async (): Promise<void> => {
         await this.driver.quit();
-    };
-
-    // Had to create below because the error of findElement cannot be suppressed
-    doesElementExist = async (identifier: string): Promise<Array<WebElement>> => {
-        let element: Array<WebElement>;
-        try {
-            element = await this.driver.findElements(By.xpath(identifier));
-        } catch (error) {
-            console.log(error);
-        } finally {
-            return element;
-        }
     };
 }
 
