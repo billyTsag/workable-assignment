@@ -1,4 +1,4 @@
-import { Builder, Browser, By, WebDriver, WebElementPromise, WebElement, until } from "selenium-webdriver";
+import { Builder, Browser, By, WebDriver, WebElementPromise, until } from "selenium-webdriver";
 
 class DriverWrapper {
     driver: WebDriver;
