@@ -6,6 +6,15 @@ services:
         hostname: ui-tests
         volumes:
             - ./reports:/app/reports
+    testing-api:
+        build:
+            dockerfile: ./Dockerfile.API
+        container_name: testing-api
+        hostname: testing-api
+        volumes:
+            - ./reports/:/app/reports/
+        ports:
+            - "3018:3018"
 volumes:
     reports:
 networks:
