@@ -13,7 +13,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@types/express": "^4.17.17",
     "crypto": "^1.0.1",
     "express": "^4.18.2",
     "mocha": "^10.2.0",
@@ -21,6 +20,7 @@
     "selenium-webdriver": "^4.7.1"
   },
   "devDependencies": {
+    "@types/express": "^4.17.17",
     "@types/mocha": "^10.0.1",
     "@types/mochawesome": "^6.2.1",
     "@types/node": "^18.15.3",
