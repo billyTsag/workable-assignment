@@ -13,7 +13,7 @@ after("Tearing Down Selenium and saving testData ", async (): Promise<void> => {
     await driverWrapper.tearDown();
     const testDataFile = path.join(process.cwd(), "/reports/testData.json");
     if (fs.existsSync(testDataFile)) {
-        fs.rmdirSync(testDataFile);
+        fs.rmSync(testDataFile);
     }
     fs.writeFileSync(testDataFile, JSON.stringify(testData.data));
 });
