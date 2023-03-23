@@ -132,8 +132,77 @@ The tests can be triggered directly through an API call that the service also pr
     http://localhost:3018/api/tests/runTests
     ```
 
-5. After the tests finish you should see the results in the logs. 
+5. The Endpoint will return a response that has the Status of the TestRun which includes the tests and the report.
 In addition to that a report in HTML format will be generated in `./reports/mocha-report.html` and the test data that were used will appaer in `./reports/testData.json`.
+The following is an example of the response: 
+    ```sh
+    {
+        "status": "Passed",
+        "results": [
+            {
+            "title": "Testing Suite: E2E  User  Creation ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  User  Login ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  User  Change Settings ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Project 1 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Project 1 Edit ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Project 2 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Task 1 of Project 1 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Task 2 of Project 1 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Task 1 of Project 1 Edit ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Project 3 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Task 1 of Project 3 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  TaskDB  Sort Tasks ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  TaskDB  Search Task",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Deleting Tasks & Projects  Task 1 of Project 1 Delete ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Deleting Tasks & Projects  Project 2 Delete ",
+            "status": "Passed"
+            }
+        ],
+        "reportPath": "C:\\src\\workable-assignment\\reports\\report.html"
+    }
+    ```
 
 ## Run the API using Docker
 
@@ -159,8 +228,77 @@ In addition to that a report in HTML format will be generated in `./reports/moch
     ```sh
     http://localhost:3018/api/mochaTests/runTests
     ```
-4. After the tests finish you should see the results in the logs. 
+4. The Endpoint will return a response that has the Status of the TestRun which includes the tests and the report.
 In addition to that a report in HTML format will be generated in `./reports/mocha-report.html` and the test data that were used will appaer in `./reports/testData.json`.
+The following is an example of the response: 
+    ```sh
+    {
+        "status": "Passed",
+        "results": [
+            {
+            "title": "Testing Suite: E2E  User  Creation ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  User  Login ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  User  Change Settings ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Project 1 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Project 1 Edit ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Project 2 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Task 1 of Project 1 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Task 2 of Project 1 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Task 1 of Project 1 Edit ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Project 3 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Projects & Tasks Task 1 of Project 3 Create ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  TaskDB  Sort Tasks ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  TaskDB  Search Task",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Deleting Tasks & Projects  Task 1 of Project 1 Delete ",
+            "status": "Passed"
+            },
+            {
+            "title": "Testing Suite: E2E  Deleting Tasks & Projects  Project 2 Delete ",
+            "status": "Passed"
+            }
+        ],
+        "reportPath": "C:\\src\\workable-assignment\\reports\\report.html"
+    }
+    ```
 
 <div align="center">
 Enjoy
